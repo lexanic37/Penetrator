@@ -1,0 +1,2 @@
+https://github.com/allfro/pymetasploit(patch https://github.com/allfro/pymetasploit/commit/e493c36ebae079e55aad343346a55b6240c56fb2)
+500 Database not loaded. Try: rpc.call('console.create')
