@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 7.70 scan initiated Thu Oct 18 20:25:33 2018 as: nmap -n -Pn -p445 -sV -oX scan_nmap 195.240.101.14/30 -->
+<nmaprun scanner="nmap" args="nmap -n -Pn -p445 -sV -oX scan_nmap 195.240.101.14/30" start="1539883533" startstr="Thu Oct 18 20:25:33 2018" version="7.70" xmloutputversion="1.04">
+<scaninfo type="connect" protocol="tcp" numservices="1" services="445"/>
+<verbose level="0"/>
+<debugging level="0"/>
+<host starttime="1539883534" endtime="1539883536"><status state="up" reason="user-set" reason_ttl="0"/>
+<address addr="195.240.101.12" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="445"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="microsoft-ds" method="table" conf="3"/></port>
+</ports>
+</host>
+<host starttime="1539883534" endtime="1539883536"><status state="up" reason="user-set" reason_ttl="0"/>
+<address addr="195.240.101.13" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="445"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="microsoft-ds" method="table" conf="3"/></port>
+</ports>
+</host>
+<host starttime="1539883534" endtime="1539883536"><status state="up" reason="user-set" reason_ttl="0"/>
+<address addr="195.240.101.14" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="445"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="microsoft-ds" method="table" conf="3"/></port>
+</ports>
+</host>
+<host starttime="1539883534" endtime="1539883536"><status state="up" reason="user-set" reason_ttl="0"/>
+<address addr="195.240.101.15" addrtype="ipv4"/>
+<hostnames>
+</hostnames>
+<ports><port protocol="tcp" portid="445"><state state="filtered" reason="no-response" reason_ttl="0"/><service name="microsoft-ds" method="table" conf="3"/></port>
+</ports>
+</host>
+<runstats><finished time="1539883536" timestr="Thu Oct 18 20:25:36 2018" elapsed="2.41" summary="Nmap done at Thu Oct 18 20:25:36 2018; 4 IP addresses (4 hosts up) scanned in 2.41 seconds" exit="success"/><hosts up="4" down="0" total="4"/>
+</runstats>
+</nmaprun>

@@ -1,15 +1,24 @@
 import yaml
-
+from ipaddress import ip_address
 from msfModules.pre_module import *
 
 
 class Kernel():
-    def __init__(self, name_workspace):
+    def __init__(self, name_workspace, scope, path_to_scan):
         self.config = self.get_config()
         self.msfrpc_client = self.connect_to_msfrpc()
-        self.create_workspace(name_workspace)
-        self.pre_module = preModule(self.msfrpc_client)
+
+        # TODO Сделать что когда имя воркспейса тоже то подтянуть старый воркспейс а не создавать новый
+        self.workspace = self.get_workspace(name_workspace)
+
+        self.pre_module = preModule(self.msfrpc_client, self.workspace)
         self.data_to_modules = self.parse_config()
+
+        self.import_scan_result(path_to_scan)
+
+        #for specify manually
+        # self.scope = scope
+        # self.scope_list = self.generate_scope(scope)
 
     def get_config(self):
         with open("config.yml", 'r') as ymlfile:
@@ -31,23 +40,39 @@ class Kernel():
         return data_to_modules
 
     def run_pre_module(self):
+        print self.data_to_modules
         for port, data_port in self.data_to_modules.iteritems():
-            for exp_with_commands in data_port['main-modules']:
+            for exp_with_commands in data_port['pre-modules']:
                 for exploit, commands in exp_with_commands.iteritems():
-                    self.pre_module.run(port, exploit, commands['commands'])
+                    self.pre_module.run( exploit, commands['commands'], port)
 
     def connect_to_msfrpc(self):
         client = MsfRpcClient(str(self.config['msfrpc']['password']))
         return client
 
-    def create_workspace(self, name_workspace):
+    def get_workspace(self, name_workspace):
         db = self.msfrpc_client.db
         # db.connect('msf', database='msf', password='qkRJrU6+SAHO45NcueBhfzSc3JaPpDbiLLQgYrIOg2Y==')
         db.workspaces.add(name_workspace)
         db.workspaces.set(name_workspace)
+        workspace = db.workspaces.workspace(name_workspace)
+
+        return workspace
 
 
-kernel = Kernel('deployment')
+    def import_scan_result(self, path):
+        self.workspace.importfile(path)
+
+    # def generate_scope(self, scope):
+    #     '''Return IPs in IPv4 range, inclusive.'''
+    #     start = scope.split('-')[0]
+    #     end = scope.split('-')[1]
+    #     start_int = int(ip_address(start).packed.encode('hex'), 16)
+    #     end_int = int(ip_address(end).packed.encode('hex'), 16)
+    #     return [ip_address(ip).exploded for ip in range(start_int, end_int)]
+
+
+kernel = Kernel('deployment','scan_nmap' , u'192.168.1.240-192.168.2.5')
 
 kernel.run_pre_module()
 # kernel.create_workspace()

