@@ -9,14 +9,14 @@ ports:
                 - auxiliary/scanner/smb/smb_ms17_010:
                         raiting: 5.0
                         commands:
-                                - RHOSTS: <RHOSTS>
+#                                - RHOSTS: <RHOSTS>
                                 - RPORT: <RPORT>
 
         main-modules:
                 - exploit/windows/smb/ms17_010_psexec:
                         raiting: 5.0
                         commands:
-                                - RHOST: <RHOST>
+#                                - RHOST: <RHOST>
                                 - RPORT: <RPORT>
 
         post-modules: null
