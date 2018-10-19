@@ -40,4 +40,6 @@ class preModule():
 
 class JobManager():
     def jobs(self):
+
+        
         return {preModule:[{'exploit': 17-010, 'machine': [{'ip':'1.1.1.1', 'job':'1'}]}]}
