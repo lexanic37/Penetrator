@@ -21,9 +21,9 @@ class preModule():
 
                 module[option] = value
         module["RHOSTS"] = scope
-        print module['RPORT']
-        print(module.execute())
-        self.result_manager.get_scan_result(port)
+        return module.execute().keys()
+
+
 
 
 
@@ -41,14 +41,14 @@ class preModule():
 
 
 
-class ScanResultsManager():
-    def __init__(self, workspace):
-        self.workspace = workspace
-
-    def get_scan_result(self, port):
-        for result in self.workspace.vulns.list:
-            if result['port'] == port:
-                print result
+# class ScanResultsManager():
+#     def __init__(self, workspace):
+#         self.workspace = workspace
+#
+#     def get_scan_result(self, port):
+#         for result in self.workspace.vulns.list:
+#             if result['port'] == port:
+#                 print result
 
             # scan_result = {'ip': result['host'], 'info':[{'service': port, 'status':'scanning','pre-module-result':name or creds, 'main-module-result':'', 'post-module-results':'' },
             #                                              {'service': port, 'status': 'scanning', 'pre-module-result': name or creds, 'main-module-result': '','post-module-results':''}]}
