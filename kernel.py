@@ -178,7 +178,7 @@ class JobsManager():
             if count_scans <= self.max_run_scans:
                 scan_data = scan_queue.get()
                 job_id = self.pre_module.run(scan_data['module'], scan_data['commands'], scan_data['port'] , scan_data['scope_for_port'])
-                self.running_scans.append({ job_id, scan_data['port'] })
+                self.running_scans.append({ job_id, scan_data['port']})
                 scan_queue.task_done()
             else:
                 time.sleep(1)
